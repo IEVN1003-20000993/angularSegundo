@@ -1,0 +1,59 @@
+<div class="container mx-auto p-4">
+  <div class="bg-white shadow-md rounded-lg p-6">
+    <h2 class="text-2xl font-bold mb-4">Calculadora del Signo Chino</h2>
+    <form [formGroup]="formulario" (ngSubmit)="calcularSigno()">
+      <div class="mb-4">
+        <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre:</label>
+        <input id="nombre" formControlName="nombre" placeholder="Ingresa tu nombre" 
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
+      </div>
+
+      <div class="mb-4">
+        <label for="aPaterno" class="block text-sm font-medium text-gray-700">Apellido Paterno:</label>
+        <input id="aPaterno" formControlName="aPaterno" placeholder="Ingresa tu apellido paterno" 
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
+      </div>
+
+      <div class="mb-4">
+        <label for="aMaterno" class="block text-sm font-medium text-gray-700">Apellido Materno:</label>
+        <input id="aMaterno" formControlName="aMaterno" placeholder="Ingresa tu apellido materno" 
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
+      </div>
+
+      <div class="mb-4">
+        <label for="dia" class="block text-sm font-medium text-gray-700">Día de nacimiento:</label>
+        <input id="dia" type="number" formControlName="dia" placeholder="Día (1-31)" 
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
+      </div>
+
+      <div class="mb-4">
+        <label for="mes" class="block text-sm font-medium text-gray-700">Mes de nacimiento:</label>
+        <input id="mes" type="number" formControlName="mes" placeholder="Mes (1-12)" 
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
+      </div>
+
+      <div class="mb-4">
+        <label for="anio" class="block text-sm font-medium text-gray-700">Año de nacimiento:</label>
+        <input id="anio" type="number" formControlName="anio" placeholder="Año (ej. 1990)" 
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
+      </div>
+
+      <div *ngIf="formulario.invalid && formulario.touched" class="text-red-500 mb-4">
+        <small>Por favor, complete todos los campos correctamente.</small>
+      </div>
+
+      <button type="submit" [disabled]="formulario.invalid" 
+              class="w-full bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 disabled:opacity-50">
+        Calcular Signo
+      </button>
+    </form>
+  </div>
+
+  <div class="resultado mt-6">
+    <h3 class="text-xl font-semibold">Resultado:</h3>
+    <div class="flex items-center mt-2">
+      <img [src]="imagenSigno || 'ruta/a/imagen/placeholder.jpg'" alt="Signo Chino" class="w-72 h-72 mr-4">
+      <p class="text-lg">{{ resultado }}</p>
+    </div>
+  </div>
+</div>

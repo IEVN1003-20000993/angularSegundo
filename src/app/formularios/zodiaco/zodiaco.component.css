@@ -1,0 +1,14 @@
+.resultado-contenido {
+  display: flex;
+  align-items: center;
+}
+
+.resultado-contenido img {
+  width: 300px; /* O cualquier tamaño que desees */
+  height: 300px; /* O cualquier tamaño que desees */
+  margin-right: 20px;
+}
+
+.resultado-contenido p {
+  font-size: 16px; /* Ajusta el tamaño del texto si es necesario */
+}
