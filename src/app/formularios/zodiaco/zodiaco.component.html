@@ -1,59 +1,84 @@
 <div class="container mx-auto p-4">
-  <div class="bg-white shadow-md rounded-lg p-6">
-    <h2 class="text-2xl font-bold mb-4">Calculadora del Signo Chino</h2>
-    <form [formGroup]="formulario" (ngSubmit)="calcularSigno()">
-      <div class="mb-4">
-        <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre:</label>
-        <input id="nombre" formControlName="nombre" placeholder="Ingresa tu nombre" 
-               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
-      </div>
+  <div class="flex justify-center">
+    <!-- Formulario -->
+    <div class="bg-white shadow-lg rounded-lg p-6 w-1/3 mr-4">
+      <h2 class="text-2xl font-bold mb-4 text-gray-800 text-center">Consulta tu signo chino</h2>
+      <form [formGroup]="formulario" (ngSubmit)="calcularSigno()">
+        <div class="mb-4">
+          <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre:</label>
+          <input id="nombre" formControlName="nombre" placeholder="Ingresa tu nombre" 
+                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
+        </div>
 
-      <div class="mb-4">
-        <label for="aPaterno" class="block text-sm font-medium text-gray-700">Apellido Paterno:</label>
-        <input id="aPaterno" formControlName="aPaterno" placeholder="Ingresa tu apellido paterno" 
-               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
-      </div>
+        <div class="mb-4">
+          <label for="aPaterno" class="block text-sm font-medium text-gray-700">Apellido Paterno:</label>
+          <input id="aPaterno" formControlName="aPaterno" placeholder="Ingresa tu apellido paterno" 
+                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
+        </div>
 
-      <div class="mb-4">
-        <label for="aMaterno" class="block text-sm font-medium text-gray-700">Apellido Materno:</label>
-        <input id="aMaterno" formControlName="aMaterno" placeholder="Ingresa tu apellido materno" 
-               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
-      </div>
+        <div class="mb-4">
+          <label for="aMaterno" class="block text-sm font-medium text-gray-700">Apellido Materno:</label>
+          <input id="aMaterno" formControlName="aMaterno" placeholder="Ingresa tu apellido materno" 
+                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
+        </div>
 
-      <div class="mb-4">
-        <label for="dia" class="block text-sm font-medium text-gray-700">Día de nacimiento:</label>
-        <input id="dia" type="number" formControlName="dia" placeholder="Día (1-31)" 
-               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
-      </div>
+        <div class="mb-4">
+          <label for="dia" class="block text-sm font-medium text-gray-700">Día de nacimiento:</label>
+          <input id="dia" type="number" formControlName="dia" placeholder="Día (1-31)" 
+                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
+        </div>
 
-      <div class="mb-4">
-        <label for="mes" class="block text-sm font-medium text-gray-700">Mes de nacimiento:</label>
-        <input id="mes" type="number" formControlName="mes" placeholder="Mes (1-12)" 
-               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
-      </div>
+        <div class="mb-4">
+          <label for="mes" class="block text-sm font-medium text-gray-700">Mes de nacimiento:</label>
+          <input id="mes" type="number" formControlName="mes" placeholder="Mes (1-12)" 
+                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
+        </div>
 
-      <div class="mb-4">
-        <label for="anio" class="block text-sm font-medium text-gray-700">Año de nacimiento:</label>
-        <input id="anio" type="number" formControlName="anio" placeholder="Año (ej. 1990)" 
-               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
-      </div>
+        <div class="mb-4">
+          <label for="anio" class="block text-sm font-medium text-gray-700">Año de nacimiento:</label>
+          <input id="anio" type="number" formControlName="anio" placeholder="Año (ej. 1990)" 
+                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring focus:ring-blue-300">
+        </div>
 
-      <div *ngIf="formulario.invalid && formulario.touched" class="text-red-500 mb-4">
-        <small>Por favor, complete todos los campos correctamente.</small>
-      </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700">Sexo:</label>
+          <div class="flex items-center">
+            <label class="mr-4">
+              <input type="radio" formControlName="sexo" value="Masculino" class="mr-1"> Masculino
+            </label>
+            <label>
+              <input type="radio" formControlName="sexo" value="Femenino" class="mr-1"> Femenino
+            </label>
+          </div>
+        </div>
 
-      <button type="submit" [disabled]="formulario.invalid" 
-              class="w-full bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 disabled:opacity-50">
+        <div *ngIf="formulario.invalid && formulario.touched" class="text-red-500 mb-4">
+          <small>Por favor, complete todos los campos correctamente.</small>
+        </div>
+
+        <button type="submit" [disabled]="formulario.invalid" 
+        class="w-full bg-transparent hover:bg-red-600 text-red-500 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded-md disabled:opacity-50">
         Calcular Signo
-      </button>
-    </form>
+        </button>
+      </form>
+    </div>
+
+<!-- Bloque de imagen y resultado -->
+<div class="w-1/3 flex flex-col">
+  <!-- Imagen -->
+  <div class="bg-white shadow-lg rounded-lg mb-4 flex items-center justify-center p-0">
+    <img 
+      [src]="imagenSigno || 'https://scontent.fcyw1-1.fna.fbcdn.net/v/t39.30808-6/462749743_3585196478437468_6783724172186683591_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Jmpqgt5J280Q7kNvgFU9SpA&_nc_ht=scontent.fcyw1-1.fna&_nc_gid=Atj5Gx4KAN8r0GYxT0zA0lG&oh=00_AYBj-c5995j9WhU6X6CY4Lri2YL2MH6WjDVoYbOCc2WlcA&oe=670F645D'" 
+      alt="Signo Chino" 
+      class="w-full h-auto rounded-lg"> <!-- Sin borde visible -->
   </div>
 
-  <div class="resultado mt-6">
-    <h3 class="text-xl font-semibold">Resultado:</h3>
-    <div class="flex items-center mt-2">
-      <img [src]="imagenSigno || 'ruta/a/imagen/placeholder.jpg'" alt="Signo Chino" class="w-72 h-72 mr-4">
-      <p class="text-lg">{{ resultado }}</p>
+  <!-- Resultado -->
+  <div class="resultado bg-white shadow-lg rounded-lg p-6">
+    <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center"></h3>
+    <div class="flex flex-col items-center mt-2"> 
+      <div class="text-lg text-gray-700 mt-4" [innerHTML]="resultado"></div> 
     </div>
   </div>
 </div>
+
