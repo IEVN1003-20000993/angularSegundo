@@ -8,7 +8,7 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
   templateUrl: './zodiaco.component.html',
   styleUrls: ['./zodiaco.component.css']
 })
-export class ZodiacoComponent implements OnInit {
+export default class ZodiacoComponent implements OnInit {
   formulario: FormGroup;
   resultado: string | null = null;
   imagenSigno: string | null = null;
