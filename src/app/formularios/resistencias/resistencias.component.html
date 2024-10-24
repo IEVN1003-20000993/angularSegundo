@@ -1,0 +1,85 @@
+<body class="bg-cover bg-center bg-no-repeat h-screen" style="background-image: url('https://scontent.fbjx1-1.fna.fbcdn.net/v/t39.30808-6/463623809_3593798787577237_8018445295771710597_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH9b9OXE9yEKWznFD4_d6SSVa1z8hDSgftVrXPyENKB-3aKdE9SprNM1BG345kOEEnEdTNPql9imVJkiaAl5Vfz&_nc_ohc=gOGIIvFINZYQ7kNvgG3YFZv&_nc_ht=scontent.fbjx1-1.fna&_nc_gid=A9HFdwEMUcR-aOGULZ5poM1&oh=00_AYA0J7M_81wKuX3rJee9ldDV-JPE-iR4HQTK38a38TcO_Q&oe=67187CB3');">
+  <div class="container mx-auto p-4 h-full flex flex-col justify-center">
+    <!-- Título -->
+    <div class="text-white mb-4 text-left">
+      <h1 class="text-2xl font-bold">Resistencias</h1>
+    </div>
+    
+    <div class="flex space-x-4">
+      <!-- Formulario -->
+      <div class="w-1/2 bg-white p-4 rounded shadow-md">
+        <form [formGroup]="formulario" (ngSubmit)="calcular()" class="space-y-4">
+          <div class="space-y-2">
+            <label for="color1" class="block text-sm font-medium">1era Banda:</label>
+            <select id="color1" formControlName="color1" class="block w-full p-2 border border-gray-300 rounded">
+              <option value="" disabled></option>
+              <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+            </select>
+  
+            <label for="color2" class="block text-sm font-medium">2da Banda:</label>
+            <select id="color2" formControlName="color2" class="block w-full p-2 border border-gray-300 rounded">
+              <option value="" disabled></option>
+              <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+            </select>
+  
+            <label for="color3" class="block text-sm font-medium">3era Banda:</label>
+            <select id="color3" formControlName="color3" class="block w-full p-2 border border-gray-300 rounded">
+              <option value="" disabled></option>
+              <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+            </select>
+  
+            <label class="block text-sm font-medium">Tolerancia:</label>
+            <div class="flex space-x-4">
+              <label class="flex items-center">
+                <input type="radio" formControlName="tolerancia" value="Oro" class="mr-2" /> Oro
+              </label>
+              <label class="flex items-center">
+                <input type="radio" formControlName="tolerancia" value="Plata" class="mr-2" /> Plata
+              </label>
+            </div>
+  
+            <div class="flex space-x-2">
+              <button type="submit" [disabled]="formulario.invalid" class="mt-4 bg-orange-500 text-white p-2 rounded hover:bg-orange-600 disabled:opacity-50">Calcular</button>
+              <button (click)="imprimir()" type="button" class="mt-4 bg-amber-300 text-white p-2 rounded hover:bg-gray-800">
+                Imprimir
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Card de resultados -->
+      <div class="w-1/2">
+        <div *ngIf="mostrarRegistros" class="bg-white p-4 rounded shadow-md mt-4">
+          <h2 class="text-xl font-bold">Resultados de Cálculo</h2>
+          <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse mt-2">
+              <thead>
+                <tr>
+                  <th class="border px-4 py-2">Banda #1</th>
+                  <th class="border px-4 py-2">Banda #2</th>
+                  <th class="border px-4 py-2">Banda #3</th>
+                  <th class="border px-4 py-2">Tolerancia</th>
+                  <th class="border px-4 py-2">Valor Ω</th>
+                  <th class="border px-4 py-2">Valor Máximo Ω</th>
+                  <th class="border px-4 py-2">Valor Mínimo Ω</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let resultado of resultados">
+                  <td class="border px-4 py-2" [style.background]="getColorCode(resultado.registro.banda1)">{{ resultado.registro.banda1 }}</td>
+                  <td class="border px-4 py-2" [style.background]="getColorCode(resultado.registro.banda2)">{{ resultado.registro.banda2 }}</td>
+                  <td class="border px-4 py-2" [style.background]="getColorCode(resultado.registro.banda3)">{{ resultado.registro.banda3 }}</td>
+                  <td class="border px-4 py-2">{{ resultado.registro.tolerancia }}</td>
+                  <td class="border px-4 py-2">{{ resultado.valor }}</td>
+                  <td class="border px-4 py-2">{{ resultado.valorMaximo }}</td>
+                  <td class="border px-4 py-2">{{ resultado.valorMinimo }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

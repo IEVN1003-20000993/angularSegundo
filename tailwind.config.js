@@ -4,8 +4,12 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'body': ['Montserrat', 'Inter', 'ui-sans-serif', 'system-ui'],
+        'sans': ['Montserrat', 'Inter', 'ui-sans-serif', 'system-ui'],
+      },
+    },
   },
-  plugins: [],
+  plugins: []
 }
-

@@ -1,0 +1,88 @@
+<body class="bg-cover bg-center bg-no-repeat h-screen" style="background-image: url('https://scontent.fbjx1-1.fna.fbcdn.net/v/t39.30808-6/463608054_3593807334243049_4599191245936696472_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeE0PDC050URDtHSv2Yi10oBHIkDvzbRSCYciQO_NtFIJlTjlCKZ0_T4wTMrWnVLPQgDKVxqjLAQ-PiloZWhoxZM&_nc_ohc=-mD4lF2mnLQQ7kNvgGHnlvo&_nc_ht=scontent.fbjx1-1.fna&_nc_gid=AbNnKSpMQJUpSpfN2DPAa1E&oh=00_AYC51sjz5LAsbp6a5Oc2TidX0jgUjdxeB6p5yvw0ZaiBQw&oe=67187627');"> 
+  <div class="container mx-auto p-4 h-full flex">
+    <!-- Columna izquierda -->
+    <div class="w-1/2 pr-4">
+      <div class="text-white mb-5">
+        <h1 class="text-2xl font-bold mb-4">Registro FUNGUS CORP</h1>
+      </div>
+      
+      <!-- Card para imprimir y botones -->
+      <div class="bg-white shadow-md rounded-lg p-4 mb-5">
+        <button (click)="imprimir()" class="text-white bg-orange-400 hover:bg-orange-800 rounded-lg text-sm w-full p-2 mb-2">Imprimir</button>
+        <button (click)="buscarEmpleado()" class="text-white bg-orange-300 hover:bg-orange-900 rounded-lg text-sm w-full p-2 mb-2">Modificar</button>
+        <button (click)="eliminarEmpleado()" class="text-white bg-red-500 hover:bg-red-950 rounded-lg text-sm w-full p-2 mb-2" [disabled]="!empleadoSeleccionado">Eliminar</button>
+      </div>
+
+      <!-- Tabla de empleados -->
+      <div *ngIf="empleados.length > 0" class="bg-white shadow-md rounded-lg p-4 overflow-auto">
+        <h2 class="text-xl font-semibold text-gray-700 mb-3">Empleados Registrados</h2>
+        <table class="min-w-full border">
+          <thead class="bg-gray-200">
+            <tr>
+              <th class="border px-4 py-2">Matrícula</th>
+              <th class="border px-4 py-2">Nombre</th>
+              <th class="border px-4 py-2">Edad</th>
+              <th class="border px-4 py-2">Correo</th>
+              <th class="border px-4 py-2">Horas trabajadas</th>
+              <th class="border px-4 py-2">Pago x Horas</th>
+              <th class="border px-4 py-2">Pago Extras</th>
+              <th class="border px-4 py-2">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let empleado of empleados">
+              <td class="border px-4 py-2">{{ empleado.matricula }}</td>
+              <td class="border px-4 py-2">{{ empleado.nombre }}</td>
+              <td class="border px-4 py-2">{{ empleado.edad }}</td>
+              <td class="border px-4 py-2">{{ empleado.email }}</td>
+              <td class="border px-4 py-2">{{ empleado.horas }}</td>
+              <td class="border px-4 py-2">{{ empleado.pagoHoras }}</td>
+              <td class="border px-4 py-2">{{ empleado.pagoExtras }}</td>
+              <td class="border px-4 py-2">{{ empleado.totalPagar }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Total a pagar -->
+        <div class="mt-4">
+          <h3 class="text-lg font-semibold text-gray-700">Total a Pagar: {{ totalAPagar }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna derecha -->
+    <div class="w-1/2">
+      <!-- Card del formulario -->
+      <div class="bg-white shadow-md rounded-lg p-4">
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="max-w-sm mx-auto">
+          <div class="mb-5">
+            <label for="matricula" class="block mb-2 text-sm font-medium text-gray-900">Matrícula</label>
+            <input type="text" id="matricula" formControlName="matricula" 
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+          </div>
+          <div class="mb-5">
+            <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900">Nombre</label>
+            <input type="text" id="nombre" formControlName="nombre" 
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+          </div>
+          <div class="mb-5">
+            <label for="edad" class="block mb-2 text-sm font-medium text-gray-900">Edad</label>
+            <input type="number" id="edad" formControlName="edad" 
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+          </div>
+          <div class="mb-5">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Correo</label>
+            <input type="email" id="email" formControlName="email" 
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+          </div>
+          <div class="mb-5">
+            <label for="horas" class="block mb-2 text-sm font-medium text-gray-900">Horas trabajadas</label>
+            <input type="number" id="horas" formControlName="horas" 
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+          </div>
+          <button type="submit" class="text-white bg-amber-300 hover:bg-amber-500 rounded-lg text-sm w-full p-2.5">Guardar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>

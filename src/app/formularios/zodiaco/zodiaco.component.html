@@ -1,3 +1,4 @@
+<body class="bg-cover bg-center bg-no-repeat h-screen" style="background-image: url('https://scontent.fbjx1-1.fna.fbcdn.net/v/t39.30808-6/463623809_3593798787577237_8018445295771710597_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH9b9OXE9yEKWznFD4_d6SSVa1z8hDSgftVrXPyENKB-3aKdE9SprNM1BG345kOEEnEdTNPql9imVJkiaAl5Vfz&_nc_ohc=gOGIIvFINZYQ7kNvgG3YFZv&_nc_ht=scontent.fbjx1-1.fna&_nc_gid=A9HFdwEMUcR-aOGULZ5poM1&oh=00_AYA0J7M_81wKuX3rJee9ldDV-JPE-iR4HQTK38a38TcO_Q&oe=67187CB3');">
 <div class="container mx-auto p-4">
   <div class="flex justify-center">
     <!-- Formulario -->
@@ -52,33 +53,35 @@
           </div>
         </div>
 
-        <div *ngIf="formulario.invalid && formulario.touched" class="text-red-500 mb-4">
+        <div ngIf="formulario.invalid && formulario.touched" class="text-red-500 mb-4">
           <small>Por favor, complete todos los campos correctamente.</small>
         </div>
 
         <button type="submit" [disabled]="formulario.invalid" 
-        class="w-full bg-transparent hover:bg-red-600 text-red-500 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded-md disabled:opacity-50">
-        Calcular Signo
+                class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-md disabled:opacity-50">
+          Calcular Signo
         </button>
       </form>
     </div>
 
-<!-- Bloque de imagen y resultado -->
-<div class="w-1/3 flex flex-col">
-  <!-- Imagen -->
-  <div class="bg-white shadow-lg rounded-lg mb-4 flex items-center justify-center p-0">
-    <img 
-      [src]="imagenSigno || 'https://scontent.fcyw1-1.fna.fbcdn.net/v/t39.30808-6/462749743_3585196478437468_6783724172186683591_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Jmpqgt5J280Q7kNvgFU9SpA&_nc_ht=scontent.fcyw1-1.fna&_nc_gid=Atj5Gx4KAN8r0GYxT0zA0lG&oh=00_AYBj-c5995j9WhU6X6CY4Lri2YL2MH6WjDVoYbOCc2WlcA&oe=670F645D'" 
-      alt="Signo Chino" 
-      class="w-full h-auto rounded-lg"> <!-- Sin borde visible -->
-  </div>
+    <!-- Bloque de imagen y resultado -->
+    <div class="w-1/3 flex flex-col">
+      <!-- Imagen -->
+      <div class="bg-white shadow-lg rounded-lg mb-4 flex items-center justify-center p-0">
+        <img 
+          [src]="imagenSigno || 'https://scontent.fcyw1-1.fna.fbcdn.net/v/t39.30808-6/462749743_3585196478437468_6783724172186683591_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Jmpqgt5J280Q7kNvgFU9SpA&_nc_ht=scontent.fcyw1-1.fna&_nc_gid=Atj5Gx4KAN8r0GYxT0zA0lG&oh=00_AYBj-c5995j9WhU6X6CY4Lri2YL2MH6WjDVoYbOCc2WlcA&oe=670F645D'" 
+          alt="Signo Chino" 
+          class="w-full h-auto rounded-lg">
+      </div>
 
-  <!-- Resultado -->
-  <div class="resultado bg-white shadow-lg rounded-lg p-6">
-    <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center"></h3>
-    <div class="flex flex-col items-center mt-2"> 
-      <div class="text-lg text-gray-700 mt-4" [innerHTML]="resultado"></div> 
+      <!-- Resultado -->
+      <div class="resultado bg-white shadow-lg rounded-lg p-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center"></h3>
+        <div class="flex flex-col items-center mt-2"> 
+          <div class="text-lg text-gray-700 mt-4" [innerHTML]="resultado"></div> 
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
+</body>
