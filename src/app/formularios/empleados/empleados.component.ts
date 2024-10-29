@@ -13,6 +13,7 @@ interface Empleado {
   horasExtras: number; 
   pagoExtras: number; 
   totalPagar: number; 
+  
 }
 
 @Component({
